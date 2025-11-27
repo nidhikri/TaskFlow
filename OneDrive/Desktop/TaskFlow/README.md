@@ -2,7 +2,7 @@
 
 TaskFlow is a full-stack productivity and task-tracking application designed to help users manage daily activities efficiently. It includes task management, notes, daily rating, calendar view, Pomodoro timer, and time-tracking analytics.
 
----
+--
 
 ## 🚀 Features
 
