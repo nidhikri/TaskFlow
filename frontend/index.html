@@ -1,0 +1,163 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TaskFlow - Productivity Dashboard</title>
+
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600&display=swap" rel="stylesheet">
+
+    <!-- Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+
+    <link rel="icon" href="favicon.png">
+
+    <style>
+        :root {
+            --bg: #121212;
+            --text: #ffffff;
+            --card: rgba(255,255,255,0.07);
+            --input-bg: rgba(255,255,255,0.15);
+            --button-bg: #8b5cf6;
+            --button-hover: #7c3aed;
+            --accent: #c084fc;
+        }
+
+        body.light-mode {
+            --bg: #fdfdfd;
+            --text: #111;
+            --card: #fff;
+            --input-bg: #fff;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: Poppins;
+            margin: 0;
+        }
+
+        .container {
+            width: 90%;
+            max-width: 900px;
+            margin: auto;
+            margin-top: 40px;
+        }
+
+        .card {
+            background: var(--card);
+            padding: 20px;
+            border-radius: 14px;
+            margin-bottom: 20px;
+        }
+
+        input, textarea {
+            width: 100%;
+            padding: 10px;
+            margin: 8px 0;
+            border-radius: 8px;
+            border: none;
+        }
+
+        button {
+            padding: 10px 15px;
+            margin: 5px;
+            background: var(--button-bg);
+            border: none;
+            border-radius: 8px;
+            color: white;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background: var(--button-hover);
+        }
+
+        .task-card {
+            padding: 10px;
+            margin-bottom: 10px;
+            background: var(--card);
+            border-radius: 10px;
+        }
+
+        .theme-btn {
+            position: fixed;
+            top: 20px;
+            right: 20px;
+        }
+
+        h1 { text-align: center; }
+    </style>
+</head>
+
+<body>
+
+<button id="themeToggle" class="theme-btn">🌙</button>
+
+<div class="container">
+
+    <h1>TaskFlow</h1>
+
+    <!-- 🔐 AUTH -->
+    <div class="card">
+        <h3>Authentication</h3>
+        <input id="email" placeholder="Email">
+        <input id="password" type="password" placeholder="Password">
+
+        <button onclick="register()">Register</button>
+        <button onclick="login()">Login</button>
+        <button onclick="logout()">Logout</button>
+
+        <p id="authStatus"></p>
+    </div>
+
+    <!-- ➕ ADD TASK -->
+    <div class="card">
+        <h3>Add Task</h3>
+        <input id="title" placeholder="Title">
+        <textarea id="description" placeholder="Description"></textarea>
+        <button onclick="addTask()">Add Task</button>
+    </div>
+
+    <!-- 📅 TASK LIST -->
+    <div class="card">
+        <h3>Your Tasks</h3>
+        <input type="date" id="taskDate">
+        <button onclick="loadTasks()">Load Tasks</button>
+        <div id="taskList"></div>
+    </div>
+
+    <!-- ⭐ RATING -->
+    <div class="card">
+        <h3>Daily Rating</h3>
+        <input id="rating" type="number" placeholder="1-10">
+        <textarea id="ratingNotes" placeholder="Notes"></textarea>
+        <button onclick="saveRating()">Save</button>
+    </div>
+
+    <!-- 🍅 POMODORO -->
+    <div class="card">
+        <h3>Pomodoro</h3>
+
+        <input id="pomoFocus" placeholder="Focus min" value="25">
+        <input id="pomoBreak" placeholder="Break min" value="5">
+
+        <h2 id="pomodoroLabel">00:00</h2>
+        <p id="pomoStatus"></p>
+
+        <button onclick="startPomodoro()">Start</button>
+        <button onclick="pausePomodoro()">Pause</button>
+        <button onclick="resetPomodoro()">Reset</button>
+
+        <audio id="pomoBeep">
+            <source src="https://actions.google.com/sounds/v1/alarms/beep_short.ogg">
+        </audio>
+    </div>
+
+</div>
+
+<script src="script.js"></script>
+
+</body>
+</html>
